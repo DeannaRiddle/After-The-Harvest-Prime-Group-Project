@@ -36,8 +36,7 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1>Integrating Google Login with React</h1>
-      <h2>After the Harvest Project</h2>
+      <h1>Gleaning Report Login</h1>
       <h2>Welcome: {name}</h2>
       <h2>is logged in? {loggedIn}</h2>
       <h2>Email: {email}</h2>
@@ -51,7 +50,8 @@ export default function App() {
         ></GoogleLogout>
       ) : (
         <GoogleLogin
-          clientId={CLIENT_ID}
+          // clientId={CLIENT_ID}
+          clientId="660033105516-7a9b1c74nl131v4jp5broc8om482smfg.apps.googleusercontent.com"
           buttonText="Login"
           onSuccess={login}
           onFailure={handleLoginFailure}
