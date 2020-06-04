@@ -15,7 +15,7 @@ services:
       - 3000:3000 # expose ports - HOST:CONTAINER (for create-react-app)
       - 35729:35729 # expose ports - HOST:CONTAINER (for serviceworker warm reloading)
     environment:
-      CLIENT_ID: ${REACT_APP_CLIENT_ID}
+      REACT_APP_CLIENT_ID: ${REACT_APP_CLIENT_ID}
     volumes:
       - "./src:/app-client/src"
       - "./public:/app-client/public"
