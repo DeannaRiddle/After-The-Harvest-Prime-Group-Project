@@ -19,7 +19,7 @@ services:
     volumes:
       - "./src:/app-client/src"
       - "./public:/app-client/public"
-      - "/app-client/node_modules"
+      - "./package.json:/app-client/package.json"
     depends_on:
       - server
     command: npm run client
@@ -66,7 +66,7 @@ services:
       - "./server:/app-server/server"
       - "./server/dist:/app-server/dist"
       - "./public:/app-server/public"
-      - "/app-server/node_modules"
+      - "./package.json:/app-server/package.json"
     depends_on:
       - database
     command: npm run server
