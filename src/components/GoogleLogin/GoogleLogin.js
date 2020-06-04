@@ -41,10 +41,10 @@ function App(props) {
   return (
     <div className="App">
       <h1>Gleaning Report Login</h1>
-      <h2>Welcome: {name}</h2>
+      {/* <h2>Welcome: {name}</h2>
       <h2>is logged in? {loggedIn.toString()}</h2>
       <h2>Email: {email}</h2>
-      <img src={url} alt={name} />
+      <img src={url} alt={name} /> */}
       {loggedIn ? (
         <GoogleLogout
           clientId={CLIENT_ID}
