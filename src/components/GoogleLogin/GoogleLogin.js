@@ -28,7 +28,6 @@ function App(props) {
 
   return (
     <div className="App">
-      <h1>Gleaning Report Login</h1>
       {loggedIn ? (
         <GoogleLogout
           clientId={CLIENT_ID}
