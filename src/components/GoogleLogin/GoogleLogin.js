@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
+import mapStoreToProps from "../../redux/mapStoreToProps";
+import { connect } from "react-redux";
 
-export default function App() {
+function App(props) {
   const [name, setName] = useState("");
 
   const [email, setEmail] = useState("");
@@ -17,6 +19,7 @@ export default function App() {
     setEmail(response.profileObj.email);
     setUrl(response.profileObj.imageUrl);
     setLoggedIn(true);
+    props.dispatch({ type: "SET_TO_LOGGEDIN" });
   };
 
   const logout = (response) => {
@@ -24,6 +27,7 @@ export default function App() {
     setEmail("");
     setUrl("");
     setLoggedIn(false);
+    props.dispatch({ type: "SET_TO_LOGGEDOUT" });
   };
 
   const handleLoginFailure = (response) => {
@@ -38,7 +42,7 @@ export default function App() {
     <div className="App">
       <h1>Gleaning Report Login</h1>
       <h2>Welcome: {name}</h2>
-      <h2>is logged in? {loggedIn}</h2>
+      <h2>is logged in? {loggedIn.toString()}</h2>
       <h2>Email: {email}</h2>
       <img src={url} alt={name} />
       {loggedIn ? (
@@ -60,3 +64,5 @@ export default function App() {
     </div>
   );
 }
+
+export default connect(mapStoreToProps)(App);
