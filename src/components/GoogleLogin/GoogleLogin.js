@@ -50,8 +50,7 @@ export default function App() {
         ></GoogleLogout>
       ) : (
         <GoogleLogin
-          // clientId={CLIENT_ID}
-          clientId="660033105516-7a9b1c74nl131v4jp5broc8om482smfg.apps.googleusercontent.com"
+          clientId={CLIENT_ID}
           buttonText="Login"
           onSuccess={login}
           onFailure={handleLoginFailure}
