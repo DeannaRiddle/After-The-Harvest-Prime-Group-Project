@@ -43,13 +43,7 @@ const Nav = (props) => {
     <div className={classes.root}>
       <AppBar position="static" className={classes.appBar}>
         <Toolbar>
-          <div>
-            <img
-              src={"../aftertheharvest.svg"}
-              alt="logo"
-              className={classes.logo}
-            />
-          </div>
+          <div></div>
           <Link to="/home" className={classes.linkText}>
             <Typography variant="h6" component="h1" className={classes.title}>
               Gleaning Report
