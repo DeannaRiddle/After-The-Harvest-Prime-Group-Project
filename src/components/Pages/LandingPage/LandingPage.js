@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import mapStoreToProps from "../../../redux/mapStoreToProps";
-import GoogleLogin from "../../GoogleLogin/GoogleLogin";
 
 import "./LandingPage.css";
+import LoginCard from "../../LoginCard/LoginCard";
 
 class LandingPage extends Component {
   render() {
     return (
       <div className="container">
-        <GoogleLogin />
+        <LoginCard />
       </div>
     );
   }
