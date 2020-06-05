@@ -53,6 +53,8 @@ services:
     ports:
       - ${PORT}:${PORT} # expose ports - HOST:CONTAINER
     environment:
+      SALESFORCE_CLIENT_ID: ${SALESFORCE_CLIENT_ID}
+      SALESFORCE_SECRET_ID: ${SALESFORCE_SECRET_ID}
       PORT_DB: ${DOCKER_DB_PORT}
       POSTGRES_USER: ${DOCKER_DB_USER}
       POSTGRES_PASSWORD: ${DOCKER_DB_PASS}
