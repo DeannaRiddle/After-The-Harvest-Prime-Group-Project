@@ -2,16 +2,15 @@ import React from "react";
 import { connect } from "react-redux";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Typography from "@material-ui/core/Typography";
+import { Card, CardContent, CardMedia, Box } from "@material-ui/core";
 import GoogleLogin from "../GoogleLogin/GoogleLogin";
 
 const useStyles = makeStyles({
-  root: {
-    margin: "auto",
+  box: {
+    width: 600,
     marginTop: 80,
+  },
+  card: {
     width: 600,
     textAlign: "center",
   },
@@ -27,26 +26,28 @@ function LoginCard() {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
-      <CardMedia
-        component="img"
-        alt="After the Harvest logo"
-        image={require("./logo-rectangle.jpeg")}
-        title="After the Harvest"
-        className={classes.media}
-      />
-      <CardContent>
-        {/* <Typography gutterBottom variant="h5" component="h2">
+    <Box boxShadow={5} mx="auto" className={classes.box}>
+      <Card className={classes.card}>
+        <CardMedia
+          component="img"
+          alt="After the Harvest logo"
+          image={require("./logo-rectangle.jpeg")}
+          title="After the Harvest"
+          className={classes.media}
+        />
+        <CardContent>
+          {/* <Typography gutterBottom variant="h5" component="h2">
           Gleaning Report Login
         </Typography> */}
-        {/* <Typography variant="body2" color="textSecondary" component="p">
+          {/* <Typography variant="body2" color="textSecondary" component="p">
           Login with your Google account
         </Typography> */}
-        <div className={classes.button}>
-          <GoogleLogin />
-        </div>
-      </CardContent>
-    </Card>
+          <div className={classes.button}>
+            <GoogleLogin />
+          </div>
+        </CardContent>
+      </Card>
+    </Box>
   );
 }
 
