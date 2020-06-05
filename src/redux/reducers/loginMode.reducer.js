@@ -1,15 +1,14 @@
-const loginMode = (state = 'login', action) => {
-    switch (action.type) {
-      case 'SET_TO_LOGIN_MODE':
-        return 'login';
-      case 'SET_TO_REGISTER_MODE':
-        return 'register';
-      default:
-        return state;
-    }
-  };
+const loginMode = (state = "loggedOut", action) => {
+  switch (action.type) {
+    case "SET_TO_LOGGEDIN":
+      return "loggedIn";
+    case "SET_TO_LOGGEDOUT":
+      return "loggedOut";
+    default:
+      return state;
+  }
+};
 
 // loginMode will be on the redux state at:
 // state.loginMode
-  export default loginMode;
-  
+export default loginMode;
