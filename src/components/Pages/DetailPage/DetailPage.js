@@ -1,14 +1,16 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import mapStoreToProps from "../../redux/mapStoreToProps";
-import { withRouter } from "react-router-dom";
+import React from "react";
+// import { connect } from "react-redux";
+// import mapStoreToProps from "../../redux/mapStoreToProps";
+// import { withRouter } from "react-router-dom";
 import { Paper, Typography } from "@material-ui/core";
+import PDFDownloadLink from "@react-pdf/renderer";
+import Report from "../../pdf/index";
 
-class DetailPage extends Component
-//need to add local state
-{
-  render() {
-    return (
+function DetailPage() {
+  const MyDoc = () => <Report />;
+
+  return (
+    <div>
       <div>
         <Typography component="h1" variant="h3">
           Gleaning Report - Date - Farm name - Crop
@@ -50,8 +52,16 @@ class DetailPage extends Component
         </Typography>
         <Paper variant="outlined"></Paper>
       </div>
-    );
-  }
+      <div>
+        <PDFDownloadLink document={<MyDoc />} fileName="gleaningReport.pdf">
+          {({ blob, url, loading, error }) =>
+            loading ? "Loading document..." : "Download now!"
+          }
+        </PDFDownloadLink>
+      </div>
+    </div>
+  );
 }
 
-export default withRouter(connect(mapStoreToProps(DetailPage)));
+// export default withRouter(connect(mapStoreToProps(DetailPage)));
+export default DetailPage;
