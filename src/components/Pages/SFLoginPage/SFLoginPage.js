@@ -32,4 +32,4 @@ class SFLoginPage extends Component {
     );
   }
 }
-export default connect(mapStoreToProps)(SFLoginPage);
+export default withStyles() connect(mapStoreToProps)(SFLoginPage);
