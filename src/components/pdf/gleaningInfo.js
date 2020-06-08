@@ -64,7 +64,7 @@ const gleaningInfoData = [
   },
 ];
 
-function gleaningInfo() {
+const gleaningInfo = () => {
   return (
     <View style={styles.container}>
       {gleaningInfoData.map(
@@ -88,6 +88,6 @@ function gleaningInfo() {
       )}
     </View>
   );
-}
+};
 
 export default gleaningInfo;

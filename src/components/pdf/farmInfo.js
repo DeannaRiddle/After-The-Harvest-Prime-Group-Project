@@ -54,20 +54,18 @@ const farmInfoData = [
   },
 ];
 
-function farmInfo() {
-  return (
-    <View style={styles.container}>
-      {farmInfoData.map(({ fieldSupervisor, farm, address, contact }) => (
-        <farmInfoEntry
-          fieldSupervisor={fieldSupervisor}
-          farm={farm}
-          address={address}
-          key={fieldSupervisor + farm}
-          contact={contact}
-        />
-      ))}
-    </View>
-  );
-}
+const farmInfo = () => (
+  <View style={styles.container}>
+    {farmInfoData.map(({ fieldSupervisor, farm, address, contact }) => (
+      <farmInfoEntry
+        fieldSupervisor={fieldSupervisor}
+        farm={farm}
+        address={address}
+        key={fieldSupervisor + farm}
+        contact={contact}
+      />
+    ))}
+  </View>
+);
 
 export default farmInfo;

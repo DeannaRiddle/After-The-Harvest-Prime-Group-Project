@@ -18,14 +18,10 @@ const styles = StyleSheet.create({
   },
 });
 
-function Title() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>
-        Gleaning Report - Date - Farm name - Crop
-      </Text>
-    </View>
-  );
-}
+const Title = () => (
+  <View style={styles.container}>
+    <Text style={styles.title}>Gleaning Report - Date - Farm name - Crop</Text>
+  </View>
+);
 
 export default Title;

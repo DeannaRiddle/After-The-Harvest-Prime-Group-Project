@@ -1,13 +1,8 @@
 import React from "react";
 
-import ReactPDF, {
-  Document,
-  Font,
-  Page,
-  StyleSheet,
-} from "@react-pdf/renderer";
+import { Document, Font, Page, StyleSheet } from "@react-pdf/renderer";
 import Title from "./Title";
-
+import PDFDownloadLink from "@react-pdf/renderer";
 import gleaningInfo from "./gleaningInfo";
 import farmInfo from "./farmInfo";
 
@@ -71,29 +66,37 @@ Font.register({
 });
 //Title information will be dynamically rendered
 
-function Report(props) {
-  return (
-    <Page {...props} style={styles.page}>
-      <Title />
-      <farmInfo />
-      <gleaningInfo />
-    </Page>
-  );
-}
+const Report = (props) => (
+  <Page {...props} style={styles.page}>
+    <Title />
+    <farmInfo />
+    <gleaningInfo />
+  </Page>
+);
 
-function Output() {
-  return (
-    <Document
-      author="Gleaning Coordinator"
-      keywords="awesome, resume, start wars"
-      subject="Gleaning Report"
-      title="Gleaning Report"
-    >
-      <Report size="letter" />
-    </Document>
-  );
-}
+const Output = () => (
+  <Document
+    author="Gleaning Coordinator"
+    keywords="awesome, resume, start wars"
+    subject="Gleaning Report"
+    title="Gleaning Report"
+  >
+    <Report size="letter" />
+  </Document>
+);
+
+const MyDoc = () => <Output />;
+
+const App = () => (
+  <div>
+    <PDFDownloadLink document={<MyDoc />} fileName="gleaningReport.pdf">
+      {({ blob, url, loading, error }) =>
+        loading ? "Loading document..." : "Download now!"
+      }
+    </PDFDownloadLink>
+  </div>
+);
 
 // ReactPDF.render(<Output />, `${__dirname}/output.pdf`);
 
-export default Output;
+export default App;

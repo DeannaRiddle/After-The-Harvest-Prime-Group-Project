@@ -3,12 +3,10 @@ import React from "react";
 // import mapStoreToProps from "../../redux/mapStoreToProps";
 // import { withRouter } from "react-router-dom";
 import { Paper, Typography } from "@material-ui/core";
-import PDFDownloadLink from "@react-pdf/renderer";
-import Report from "../../pdf/index";
+
+import App from "../../pdf/index";
 
 function DetailPage() {
-  const MyDoc = () => <Report />;
-
   return (
     <div>
       <div>
@@ -52,13 +50,7 @@ function DetailPage() {
         </Typography>
         <Paper variant="outlined"></Paper>
       </div>
-      <div>
-        <PDFDownloadLink document={<MyDoc />} fileName="gleaningReport.pdf">
-          {({ blob, url, loading, error }) =>
-            loading ? "Loading document..." : "Download now!"
-          }
-        </PDFDownloadLink>
-      </div>
+      {App}
     </div>
   );
 }
