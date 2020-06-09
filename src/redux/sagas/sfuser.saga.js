@@ -11,18 +11,8 @@ function* fetchSalesforceUser() {
   }
 }
 
-function* getGleaningListItem() {
-  try {
-    const response = yield axios.get("api/salesforce/gleaning/item");
-    yield put({ type: "SET_GLEANING_ITEM", payload: response.data });
-  } catch (error) {
-    console.log("Gleaning request failed", error);
-  }
-}
-
 function* sfuserSaga() {
   yield takeLatest("FETCH_SALESFORCE_USER", fetchSalesforceUser);
-  yield takeLatest("GET_ALL_GLEANING", getGleaningListItem);
 }
 
 export default sfuserSaga;

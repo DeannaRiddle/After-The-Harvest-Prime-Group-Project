@@ -3,8 +3,8 @@ import { put, takeLatest } from "redux-saga/effects";
 
 function* getGleaningListItem() {
   try {
-    const response = yield axios.get("api/salesforce/gleaning/item");
-    yield put({ type: "SET_GLEANING_ITEM", payload: response.data });
+    const response = yield axios.get("api/salesforce/gleaning/list");
+    yield put({ type: "SET_GLEANING_LIST", payload: response.data });
   } catch (error) {
     console.log("Gleaning request failed", error);
   }
