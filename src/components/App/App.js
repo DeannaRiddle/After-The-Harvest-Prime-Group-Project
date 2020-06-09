@@ -18,7 +18,6 @@ import "../Fonts/Fonts.css";
 // import InfoPage from "../InfoPage/InfoPage";
 import LandingPage from "../Pages/LandingPage/LandingPage";
 import DetailPage from "../Pages/DetailPage/DetailPage";
-import SFLoginPage from "../Pages/SFLoginPage/SFLoginPage";
 import GleaningListPage from "../Pages/GleaningListPage/GleaningListPage";
 // import LoginPage from "../LoginPage/LoginPage";
 // import RegisterPage from "../RegisterPage/RegisterPage";
@@ -44,7 +43,6 @@ class App extends Component {
             <Route exact path="/home" component={LandingPage} />
             <Route exact path="/detail" component={DetailPage} />
 
-            <Route exact path="/sflogin" component={SFLoginPage} />
             <Route exact path="/gleaning" component={GleaningListPage} />
             {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
