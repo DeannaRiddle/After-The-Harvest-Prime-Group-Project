@@ -1,22 +1,55 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import mapStoreToProps from "../../../redux/mapStoreToProps";
-import { withStyles } from "@material-ui/core/styles";
 //material-ui components
-import { Card, CardActionArea } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  CardActionArea,
+  Box,
+} from "@material-ui/core";
 
-class SFLoginPage extends Component {
+const useStyles = makeStyles({
+  box: {
+    width: 600,
+    marginTop: 80,
+  },
+  card: {
+    width: 600,
+    textAlign: "center",
+  },
+  media: {
+    height: 140,
+  },
+  button: {
+    paddingTop: 10,
+  },
+});
+
+function SFLoginPage() {
+  const classes = useStyles;
   //function to login with salesforce user id
-  render() {
-    return (
+
+  return (
+    <Box boxShadow={5} mx="auto" className={classes.box}>
       <Card>
         <CardActionArea
           onClick={(event) => {
             this.props.dispatch({ type: "FETCH_SALESFORCE_USER" });
           }}
-        ></CardActionArea>
+        >
+          <CardMedia
+            className={classes.imgMedia}
+            image={(require, "./foodVegg.jpeg")}
+            title="Salesforce Login"
+          />
+        </CardActionArea>
+        <CardContent>Click to Login with Salesforce</CardContent>
       </Card>
-    );
-  }
+    </Box>
+  );
 }
-export default withStyles()(connect(mapStoreToProps)(SFLoginPage));
+
+export default connect(mapStoreToProps)(SFLoginPage);
