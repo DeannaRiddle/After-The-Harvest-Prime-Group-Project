@@ -1,59 +1,38 @@
 import React from "react";
-// import { connect } from "react-redux";
-// import mapStoreToProps from "../../redux/mapStoreToProps";
-// import { withRouter } from "react-router-dom";
-import { Paper, Typography } from "@material-ui/core";
+import ReactToPrint from "react-to-print";
+// import Title from "../../report/Title";
+// import "../../report/Title.css";
+// import FarmInfo from "../../report/FarmInfo";
+// import GleaningInfo from "../../report/GleaningInfo";
 
-import PdfButton from "../../pdf/index";
-
-function DetailPage() {
-  return (
-    <div>
+class ComponentToPrint extends React.Component {
+  render() {
+    return (
       <div>
-        <Typography component="h1" variant="h3">
-          Gleaning Report - Date - Farm name - Crop
-        </Typography>
-        <Typography component="h4" variant="h4">
-          Field Supervisor:
-        </Typography>
-        <Typography component="h4" variant="h4">
-          Farm:
-        </Typography>
-        <Typography component="h4" variant="h4">
-          Address:
-        </Typography>
-        <Typography component="h4" variant="h4">
-          Contact:
-        </Typography>
-
-        <Typography component="h4" variant="h4">
-          Gleaning Network Manager Notes:
-        </Typography>
-        <Paper variant="outlined"></Paper>
-        <Typography component="h4" variant="h4">
-          Summary:
-        </Typography>
-        <Paper variant="outlined"></Paper>
-
-        <Typography component="h4" variant="h4">
-          Produce Incoming:
-        </Typography>
-        <Paper variant="outlined"></Paper>
-
-        <Typography component="h4" variant="h4">
-          Produce Distribution:
-        </Typography>
-        <Paper variant="outlined"></Paper>
-
-        <Typography component="h4" variant="h4">
-          Volunteer Roster:
-        </Typography>
-        <Paper variant="outlined"></Paper>
+        <p>Gleaning Report - Date - Farm name - Crop</p>
+        {/* <FarmInfo /> */}
+        {/* <GleaningInfo /> */}
       </div>
-      <PdfButton />
-    </div>
-  );
+    );
+  }
 }
 
-// export default withRouter(connect(mapStoreToProps(DetailPage)));
-export default DetailPage;
+class Example extends React.Component {
+  render() {
+    return (
+      <div>
+        <ReactToPrint
+          trigger={() => {
+            // NOTE: could just as easily return <SomeComponent />. Do NOT pass an `onClick` prop
+            // to the root node of the returned component as it will be overwritten.
+            return <a href="#">Print this out!</a>;
+          }}
+          content={() => this.componentRef}
+        />
+        <ComponentToPrint ref={(el) => (this.componentRef = el)} />
+      </div>
+    );
+  }
+}
+
+export default Example;
