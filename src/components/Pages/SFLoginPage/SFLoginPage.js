@@ -1,21 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import mapStoreToProps from "../../../redux/mapStoreToProps";
-import { withStyles, createStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 //material-ui components
-import {
-  Card,
-  CardActionArea,
-  CardContent,
-  Typography,
-} from "@material-ui/core";
-
-const sfStyles = (theme) =>
-  createSFStyles({
-    imgMedia: {
-      height: "330px",
-    },
-  });
+import { Card, CardActionArea } from "@material-ui/core";
 
 class SFLoginPage extends Component {
   //function to login with salesforce user id
@@ -26,18 +14,7 @@ class SFLoginPage extends Component {
           onClick={(event) => {
             this.props.dispatch({ type: "FETCH_SALESFORCE_USER" });
           }}
-        >
-          <CardMedia
-            className={classes.imgMedia}
-            image={F & V.jpg}
-            title={item.title}
-          />
-          <CardContent>
-            <Typography component="h3" variant="h6">
-              Please click to Access Salesforce
-            </Typography>
-          </CardContent>
-        </CardActionArea>
+        ></CardActionArea>
       </Card>
     );
   }

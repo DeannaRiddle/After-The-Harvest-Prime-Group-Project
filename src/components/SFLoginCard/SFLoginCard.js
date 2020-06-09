@@ -31,7 +31,7 @@ function SFLoginCard() {
         <CardMedia
           component="img"
           alt="After the Harvest logo"
-          image={require("./logo-rectangle.jpeg")}
+          image={require("./foodVegg.jpeg")}
           title="After the Harvest"
           className={classes.media}
         />
