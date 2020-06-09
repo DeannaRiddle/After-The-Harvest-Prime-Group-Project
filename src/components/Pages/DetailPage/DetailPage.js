@@ -4,7 +4,7 @@ import React from "react";
 // import { withRouter } from "react-router-dom";
 import { Paper, Typography } from "@material-ui/core";
 
-import App from "../../pdf/index";
+import PdfButton from "../../pdf/index";
 
 function DetailPage() {
   return (
@@ -50,7 +50,7 @@ function DetailPage() {
         </Typography>
         <Paper variant="outlined"></Paper>
       </div>
-      {App}
+      <PdfButton />
     </div>
   );
 }

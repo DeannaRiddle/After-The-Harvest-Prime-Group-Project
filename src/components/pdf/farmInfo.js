@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const farmInfoEntry = ({ fieldSupervisor, farm, address, contact }) => {
+const FarmInfoEntry = ({ fieldSupervisor, farm, address, contact }) => {
   return (
     <View style={styles.entryContainer}>
       <Text style={styles.title}>Field Supervisor: </Text>
@@ -54,10 +54,10 @@ const farmInfoData = [
   },
 ];
 
-const farmInfo = () => (
+const FarmInfo = () => (
   <View style={styles.container}>
     {farmInfoData.map(({ fieldSupervisor, farm, address, contact }) => (
-      <farmInfoEntry
+      <FarmInfoEntry
         fieldSupervisor={fieldSupervisor}
         farm={farm}
         address={address}
@@ -68,4 +68,4 @@ const farmInfo = () => (
   </View>
 );
 
-export default farmInfo;
+export default FarmInfo;

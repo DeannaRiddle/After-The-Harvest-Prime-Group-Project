@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const gleaningInfoEntry = ({
+const GleaningInfoEntry = ({
   managerNotes,
   summary,
   produceIncoming,
@@ -64,7 +64,7 @@ const gleaningInfoData = [
   },
 ];
 
-const gleaningInfo = () => {
+const GleaningInfo = () => {
   return (
     <View style={styles.container}>
       {gleaningInfoData.map(
@@ -76,7 +76,7 @@ const gleaningInfo = () => {
           volunteerRoster,
           index,
         }) => (
-          <gleaningInfoEntry
+          <GleaningInfoEntry
             managerNotes={managerNotes}
             summary={summary}
             produceIncoming={produceIncoming}
@@ -90,4 +90,4 @@ const gleaningInfo = () => {
   );
 };
 
-export default gleaningInfo;
+export default GleaningInfo;

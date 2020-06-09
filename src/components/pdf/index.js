@@ -1,10 +1,18 @@
 import React from "react";
+import { saveAs } from "file-saver";
+import { Button } from "@material-ui/core";
 
-import { Document, Font, Page, StyleSheet } from "@react-pdf/renderer";
+import {
+  PDFDownloadLink,
+  Document,
+  Page,
+  StyleSheet,
+  BlobProvider,
+  pdf,
+} from "@react-pdf/renderer";
 import Title from "./Title";
-import PDFDownloadLink from "@react-pdf/renderer";
-import gleaningInfo from "./gleaningInfo";
-import farmInfo from "./farmInfo";
+import GleaningInfo from "./gleaningInfo";
+import FarmInfo from "./farmInfo";
 
 const styles = StyleSheet.create({
   page: {
@@ -48,33 +56,33 @@ const styles = StyleSheet.create({
   },
 });
 
-Font.register({
-  family: "Open Sans",
-  src: `${__dirname}/fonts/fonts/Open_Sans/OpenSans-Regular.ttf`,
-});
-Font.register({
-  family: "Lato",
-  src: `${__dirname}/fonts/fonts/Lato/Lato-Regular.ttf`,
-});
-Font.register({
-  family: "Lato Italic",
-  src: `${__dirname}/fonts/fonts/Lato/Lato-Italic.ttf`,
-});
-Font.register({
-  family: "Lato Bold",
-  src: `${__dirname}/fonts/fonts/Lato/Lato-Bold.ttf`,
-});
+// Font.register({
+//   family: "Open Sans",
+//   src: `${__dirname}/fonts/fonts/Open_Sans/OpenSans-Regular.ttf`,
+// });
+// Font.register({
+//   family: "Lato",
+//   src: `${__dirname}/fonts/fonts/Lato/Lato-Regular.ttf`,
+// });
+// Font.register({
+//   family: "Lato Italic",
+//   src: `${__dirname}/fonts/fonts/Lato/Lato-Italic.ttf`,
+// });
+// Font.register({
+//   family: "Lato Bold",
+//   src: `${__dirname}/fonts/fonts/Lato/Lato-Bold.ttf`,
+// });
 //Title information will be dynamically rendered
 
 const Report = (props) => (
   <Page {...props} style={styles.page}>
     <Title />
-    <farmInfo />
-    <gleaningInfo />
+    <FarmInfo />
+    <GleaningInfo />
   </Page>
 );
 
-const Output = () => (
+const MyDoc = () => (
   <Document
     author="Gleaning Coordinator"
     keywords="awesome, resume, start wars"
@@ -85,18 +93,16 @@ const Output = () => (
   </Document>
 );
 
-const MyDoc = () => <Output />;
+const generatePdfDocument = () => {
+  const blob = pdf(<MyDoc />).toBlob();
+  const fileName = "Gleaning Report";
+  saveAs(blob, fileName);
+};
 
-const App = () => (
-  <div>
-    <PDFDownloadLink document={<MyDoc />} fileName="gleaningReport.pdf">
-      {({ blob, url, loading, error }) =>
-        loading ? "Loading document..." : "Download now!"
-      }
-    </PDFDownloadLink>
-  </div>
-);
+function PdfButton() {
+  return <Button onClick={generatePdfDocument}>Generate PDF</Button>;
+}
 
 // ReactPDF.render(<Output />, `${__dirname}/output.pdf`);
 
-export default App;
+export default PdfButton;
