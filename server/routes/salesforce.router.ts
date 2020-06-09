@@ -12,7 +12,7 @@ const oauth2 = new jsforce.OAuth2({
   clientId: process.env.SALESFORCE_CLIENT_ID,
   clientSecret: process.env.SALESFORCE_SECRET_ID,
   //redirectUri : 'http://localhost:' + port +'/token'
-  redirectUri: "http://localhost:3000/#/gleaning/list",
+  redirectUri: "http://localhost:3000/#/sflogin",
 });
 //get route for salesforce user login
 router.get(

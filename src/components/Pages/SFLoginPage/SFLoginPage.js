@@ -10,6 +10,14 @@ import {
   Typography,
 } from "@material-ui/core";
 
+const sfStyles = theme =>
+  createSFStyles ({
+    imgMedia: {
+      height: '330px'
+      backgroundSizing: 'cover',
+    }
+  })
+
 class SFLoginPage extends Component {
   //function to login with salesforce user id
   render() {
@@ -20,6 +28,7 @@ class SFLoginPage extends Component {
             this.props.dispatch({ type: "FETCH_SALESFORCE_USER" });
           }}
         >
+          <CardMedia className={classes.imgMedia} image={F&V.jpg} title={item.title} />
           <CardContent>
             <Typography component="h3" variant="h6">
               Please click to Access Salesforce
