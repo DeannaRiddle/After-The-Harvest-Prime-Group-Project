@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import mapStoreToProps from "../../redux/mapStoreToProps";
-
-import { withStyles, createStyles } from "material-ui/core/styles";
+import mapStoreToProps from "../../../redux/mapStoreToProps";
+import { withStyles, createStyles } from "@material-ui/core/styles";
 //material-ui components
 import {
   Card,
@@ -40,4 +39,4 @@ class SFLoginPage extends Component {
     );
   }
 }
-export default withStyles() connect(mapStoreToProps)(SFLoginPage);
+export default withStyles()(connect(mapStoreToProps)(SFLoginPage));
