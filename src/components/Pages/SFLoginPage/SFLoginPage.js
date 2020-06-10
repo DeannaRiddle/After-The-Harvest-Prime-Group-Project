@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import mapStoreToProps from "../../../redux/mapStoreToProps";
 //material-ui components
@@ -28,25 +28,23 @@ const useStyles = makeStyles({
   },
 });
 
-function SFLoginPage() {
-  const classes = useStyles;
+function SFLoginPage(props) {
+  const classes = useStyles();
   //function to login with salesforce user id
 
   return (
     <Box boxShadow={5} mx="auto" className={classes.box}>
       <Card>
         <CardActionArea
-          onClick={(event) => {
-            this.props.dispatch({ type: "FETCH_SALESFORCE_USER" });
-          }}
+          onClick={() => props.dispatch({ type: "FETCH_SALESFORCE_USER" })}
         >
           <CardMedia
             className={classes.imgMedia}
             image={(require, "./foodVegg.jpeg")}
             title="Salesforce Login"
           />
+          <CardContent>Click to Login with Salesforce</CardContent>
         </CardActionArea>
-        <CardContent>Click to Login with Salesforce</CardContent>
       </Card>
     </Box>
   );
