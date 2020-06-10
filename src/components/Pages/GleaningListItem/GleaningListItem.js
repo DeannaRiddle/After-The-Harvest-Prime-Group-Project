@@ -9,7 +9,6 @@ import {
   Card,
   CardActionArea,
   CardContent,
-  CardMedia,
   Typography,
 } from "@material-ui/core";
 
