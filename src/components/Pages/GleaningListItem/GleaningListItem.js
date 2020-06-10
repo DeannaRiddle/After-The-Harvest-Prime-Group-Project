@@ -10,7 +10,6 @@ import {
   CardHeader,
   CardActionArea,
   CardContent,
-  CardMedia,
   Typography,
   ListItemSecondaryAction,
 } from "@material-ui/core";
