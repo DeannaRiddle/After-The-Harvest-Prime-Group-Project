@@ -25,11 +25,11 @@ class GleaningList extends Component {
     return (
       <Container maxWidth={false}>
         <Grid container spacing={2}>
-          {/* {gleaningItem.map((item, index) => ( */}
-          <Grid item xs={12} sm={4} md={3} lg={2}>
-            <GleaningListItem />
-          </Grid>
-          {/* ))} */};
+          {this.props.store.gleaningList.map((item, index) => (
+            <Grid item xs={12} sm={4} md={3} lg={2}>
+              <GleaningListItem item={item} />
+            </Grid>
+          ))}
         </Grid>
       </Container>
     );
