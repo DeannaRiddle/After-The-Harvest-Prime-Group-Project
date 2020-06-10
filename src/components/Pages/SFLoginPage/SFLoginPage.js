@@ -1,46 +1,54 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import mapStoreToProps from "../../../redux/mapStoreToProps";
-import { withStyles, createStyles } from "@material-ui/core/styles";
+
 //material-ui components
+import { makeStyles } from "@material-ui/core/styles";
 import {
   Card,
-  CardActionArea,
   CardContent,
-  Typography,
+  CardMedia,
+  CardActionArea,
+  Box,
 } from "@material-ui/core";
 
-// const sfStyles = (theme) =>
-//   createSFStyles({
-//     imgMedia: {
-//       height: "330px",
-//       backgroundSizing: "cover",
-//     },
-//   });
+const useStyles = makeStyles({
+  box: {
+    width: 600,
+    marginTop: 80,
+  },
+  card: {
+    width: 600,
+    textAlign: "center",
+  },
+  media: {
+    height: 140,
+  },
+  button: {
+    paddingTop: 10,
+  },
+});
 
-class SFLoginPage extends Component {
+function SFLoginPage(props) {
+  const classes = useStyles();
   //function to login with salesforce user id
-  render() {
-    return (
+
+  return (
+    <Box boxShadow={5} mx="auto" className={classes.box}>
       <Card>
         <CardActionArea
-          onClick={(event) => {
-            this.props.dispatch({ type: "FETCH_SALESFORCE_USER" });
-          }}
+          onClick={() => props.dispatch({ type: "FETCH_SALESFORCE_USER" })}
         >
-          {/* <CardMedia
+          <CardMedia
             className={classes.imgMedia}
-            image={F & V.jpg}
-            title={item.title}
-          /> */}
-          <CardContent>
-            <Typography component="h3" variant="h6">
-              Please click to Access Salesforce
-            </Typography>
-          </CardContent>
+            image={(require, "./SFLoginPage/foodVegg.jpeg")}
+            title="Salesforce Login"
+          />
+          <CardContent>Click to Login with Salesforce</CardContent>
         </CardActionArea>
       </Card>
-    );
-  }
+    </Box>
+  );
 }
-export default withStyles()(connect(mapStoreToProps)(SFLoginPage));
+
+export default connect(mapStoreToProps)(SFLoginPage);
