@@ -5,16 +5,18 @@ FROM node:12-alpine
 RUN mkdir -p /app-server
 WORKDIR /app-server
 
+RUN apk --no-cache add --virtual builds-deps build-base python
+
 COPY package.json /app-server
 
 # Solve for bcrypt dependencies with gyp
 # Solution should not effect image size
 # https://github.com/nodejs/docker-node/issues/384#issuecomment-305208112
-RUN apk --no-cache add --virtual native-deps \
-  g++ gcc libgcc libstdc++ linux-headers make python && \
-  npm install --quiet node-gyp -g &&\
-  npm install --quiet && \
-  apk del native-deps
+# RUN apk --no-cache add --virtual native-deps \
+#   g++ gcc libgcc libstdc++ linux-headers make python && \
+#   npm install --quiet node-gyp -g &&\
+#   npm install --quiet && \
+#   apk del native-deps
 
 RUN npm install
 
