@@ -3,14 +3,16 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 // dependencies for custom material-ui styling
-import { withStyles, createStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles, createStyles } from "@material-ui/core/styles";
 // material-ui components
 import {
   Card,
+  CardHeader,
   CardActionArea,
   CardContent,
   CardMedia,
   Typography,
+  ListItemSecondaryAction,
 } from "@material-ui/core";
 
 // create custom material styling
@@ -22,34 +24,38 @@ const customStyles = (theme) =>
     },
   });
 
-class GleaningListItem extends Component {
-  componentDidMount() {
-    // load up all information from the server
-    this.props.dispatch({
-      type: "GET_ALL_GLEANING",
-      //from gleaning saga SET from gleaning reducer getting data from salesforce.router
-    });
-  }
+const useStyles = makeStyles((theme) => ({
+  orange: {
+    maxWidth: 345,
+    background: "#ed6622",
+  },
+  stuff: {
+    background: "#eeeeee",
+  },
+}));
 
-  clickGleaningDetails = (event, id) => {
-    this.props.history.push(`/details/${id}`);
-  };
-  //each item on click goes to the detail page
-  render() {
-    // const { gleaningItem } = this.props;
+// const clickDetails = (clickGleaningDetails = (event, id) => {
+//   this.props.history.push(`/details/${id}`);
+// });
+//each item on click goes to the detail page
+function GleaningListItem() {
+  const { item } = this.props;
+  const classes = useStyles();
+  // const click = clickDetails();
 
-    return (
-      <Card>
-        <CardActionArea onClick={(event) => this.clickGleaningDetails(event)}>
-          <CardContent>
-            <Typography component="h3" variant="h6">
-              Gleaning Item Card
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </Card>
-    );
-  }
+  return (
+    <Card className={classes.orange}>
+      <CardHeader title={item.farm} subheader={item.date} />
+      {/* <CardActionArea onClick={(event) => this.clickDetails(event)}> */}
+      <CardContent className={classes.stuff}>
+        <Typography variant="body2" color="textSecondary" component="p">
+          Field Supervisor: {item.field_supv}
+          Start Time: {item.start_time}
+        </Typography>
+      </CardContent>
+      {/* </CardActionArea> */}
+    </Card>
+  );
 }
 
 const mapStoreToProps = (store) => ({ store });
