@@ -14,14 +14,14 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 160,
   },
   appBar: {
-    background: "#f2efea",
+    background: "#F04D30",
   },
   title: {
     flexGrow: 1,
   },
   linkText: {
     textDecoration: "none",
-    color: "#F04D30",
+    color: "#fff",
     marginRight: "20px",
   },
 }));
