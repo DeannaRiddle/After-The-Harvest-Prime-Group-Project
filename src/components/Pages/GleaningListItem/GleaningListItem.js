@@ -39,7 +39,7 @@ const customStyles = (theme) =>
 class GleaningListItem extends Component {
   //each item on click goes to the detail page
   clickGleaningDetails = (event, id) => {
-    this.props.history.push(`/details/${id}`);
+    this.props.history.push(`/detail`);
   };
   render() {
     const { item, classes } = this.props;

@@ -18,7 +18,7 @@ class GleaningList extends Component {
   }
 
   clickGleaningDetails = (event, id) => {
-    this.props.history.push(`/details/${id}`);
+    this.props.history.push(`/detail`);
   };
 
   render() {
