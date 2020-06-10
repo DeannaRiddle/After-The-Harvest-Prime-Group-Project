@@ -1,0 +1,32 @@
+.margin {
+  margin-left: 30%;
+}
+
+.reportTitleContainer {
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.reportTitle {
+  font-family: "Lato Bold";
+  font-size: 25px;
+  margin-bottom: 5px;
+}
+
+.container {
+  flex: 1;
+  padding-left: 15px;
+}
+
+.title {
+  font-size: 20px;
+  color: "black";
+  text-decoration: "none";
+  font-family: "Lato Bold";
+  margin: 0;
+}
+
+.detail {
+  font-size: 15px;
+  font-family: "Lato";
+}
