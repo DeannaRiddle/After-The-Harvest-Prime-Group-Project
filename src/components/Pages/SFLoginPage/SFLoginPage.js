@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import mapStoreToProps from "../../../redux/mapStoreToProps";
+
 //material-ui components
 import { makeStyles } from "@material-ui/core/styles";
 import {
@@ -40,7 +41,7 @@ function SFLoginPage(props) {
         >
           <CardMedia
             className={classes.imgMedia}
-            image={(require, "./foodVegg.jpeg")}
+            image={(require, "./SFLoginPage/foodVegg.jpeg")}
             title="Salesforce Login"
           />
           <CardContent>Click to Login with Salesforce</CardContent>

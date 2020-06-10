@@ -43,7 +43,7 @@ class App extends Component {
             {/* <Route exact path="/about" component={AboutPage} /> */}
             <Route exact path="/home" component={LandingPage} />
             <Route exact path="/detail" component={DetailPage} />
-
+            <Route exact path="/sflogin" component={SFLoginPage} />
             <Route exact path="/gleaning" component={GleaningListPage} />
             {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
