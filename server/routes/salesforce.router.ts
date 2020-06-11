@@ -5,31 +5,58 @@ import pool from "../modules/pool";
 
 const router: express.Router = express.Router();
 //jsForce connection
-const oauth2 = new jsforce.OAuth2({
-  // you can change loginUrl to connect to sandbox or prerelease env.
+const conn = new jsforce.Connection({
   loginUrl: "https://na116.salesforce.com",
-  //clientId and Secret will be provided when you create a new connected app in your SF developer account
-  clientId: process.env.SALESFORCE_CLIENT_ID,
-  clientSecret: process.env.SALESFORCE_SECRET_ID,
-  //redirectUri : 'http://localhost:' + port +'/token'
-  redirectUri: "http://localhost:3000/#/sflogin",
+  // you can change loginUrl to connect to sandbox or prerelease env.
+  // loginUrl : 'https://test.salesforce.com'
 });
+
+// const oauth2 = new jsforce.OAuth2({
+//   // you can change loginUrl to connect to sandbox or prerelease env.
+//   //clientId and Secret will be provided when you create a new connected app in your SF developer account
+//   clientId: process.env.SALESFORCE_CLIENT_ID,
+//   clientSecret: process.env.SALESFORCE_SECRET_ID,
+//   //redirectUri : 'http://localhost:' + port +'/token'
+//   redirectUri: "http://localhost:3000/#/sflogin",
+// });
 //get route for salesforce user login
+console.log("Username?", process.env.SALESFORCE_USERNAME);
+console.log("PASSWORD?", process.env.SALESFORCE_PASSWORD);
 router.get(
   "/auth/login",
   (req: Request, res: Response, next: express.NextFunction): void => {
     // Redirect to Salesforce login/authorization page
     console.log("is it working?");
-    try {
-      const redirectUrl = oauth2.getAuthorizationUrl({
-        scope: "api id web refresh_token",
-      });
-      console.log(redirectUrl);
-      res.redirect(redirectUrl);
-    } catch (err) {
-      console.log(err);
-      res.sendStatus(500);
-    }
+    const username = process.env.SALESFORCE_USERNAME || "";
+    const password = process.env.SALESFORCE_PASSWORD || "";
+    const token = process.env.SALESFORCE_TOKEN || "";
+    const passToken = password + token;
+    conn.login(username, passToken, function (err, userInfo) {
+      if (err) {
+        console.error(err);
+        res.sendStatus(500);
+      }
+
+      // Now you can get the access token and instance URL information.
+      // Save them to establish connection next time.
+      console.log(conn.accessToken);
+      console.log(conn.instanceUrl);
+      // logged in user property
+      console.log("User ID: " + userInfo.id);
+      console.log("Org ID: " + userInfo.organizationId);
+      res.send({ userInfo });
+      // ...
+    });
+    // try {
+    //   const redirectUrl = oauth2.getAuthorizationUrl({
+    //     scope: "api id web refresh_token",
+    //   });
+    //   console.log(redirectUrl);
+    //   res.redirect(redirectUrl);
+    // } catch (err) {
+    //   console.log(err);
+    //   res.sendStatus(500);
+    // }
   }
 );
 

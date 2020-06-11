@@ -6,6 +6,7 @@ import { withRouter } from "react-router-dom";
 import { makeStyles, withStyles, createStyles } from "@material-ui/core/styles";
 // material-ui components
 import {
+  Button,
   Card,
   CardHeader,
   CardActionArea,
@@ -17,26 +18,40 @@ import {
 // create custom material styling
 const customStyles = (theme) =>
   createStyles({
+    printButton: {
+      background: "#fcb83b",
+      color: "#fff",
+      "&:hover": {
+        color: "#fff",
+        background: "#f04d30",
+      },
+    },
     orange: {
       maxWidth: 345,
-      background: "#ed6622",
+      background: "#fcb83b",
       boxShadow: "1px 3px rgb(0,0,0,0.3)",
     },
     stuff: {
-      background: "#ffffff",
+      background: "#f2efea",
     },
   });
 
 class GleaningListItem extends Component {
   //each item on click goes to the detail page
   clickGleaningDetails = (event, id) => {
-    this.props.history.push(`/details/${id}`);
+    this.props.history.push(`/detail`);
   };
   render() {
     const { item, classes } = this.props;
 
     return (
       <Card className={classes.orange}>
+        <Button
+          className={classes.printButton}
+          onClick={(event) => this.clickGleaningDetails(event)}
+        >
+          Create Gleaning Report
+        </Button>
         <CardHeader title={item.farm} subheader={item.date} />
         <CardContent className={classes.stuff}>
           <Typography variant="body2" color="textSecondary" component="p">
@@ -46,24 +61,14 @@ class GleaningListItem extends Component {
             Start Time: {item.start_time}
           </Typography>
         </CardContent>
-        <CardActionArea onClick={(event) => this.clickGleaningDetails(event)}>
-          <Typography
-            variant="h5"
-            color="textSecondary"
-            component="p"
-            align="center"
-          >
-            {item.produce}
-          </Typography>
-          <Typography
-            variant="body1"
-            color="textSecondary"
-            component="p"
-            align="center"
-          >
-            click for details
-          </Typography>
-        </CardActionArea>
+        <Typography
+          variant="body1"
+          color="inherit"
+          component="p"
+          align="center"
+        >
+          {item.produce}
+        </Typography>
       </Card>
     );
   }
