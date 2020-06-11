@@ -9,6 +9,7 @@ function App(props) {
   const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
 
   const login = (response) => {
+    console.log(response);
     setLoggedIn(true);
     props.dispatch({ type: "SET_TO_LOGGEDIN" });
   };
