@@ -60,6 +60,42 @@ router.get(
   }
 );
 
+/**
+ * GET route template
+ */
+router.get(
+  "/",
+  (req: Request, res: Response, next: express.NextFunction): void => {
+    const records = [];
+    const query = conn
+      .query(
+        "SELECT GW_Volunteers__Description__c FROM GW_Volunteers__Volunteer_Shift__c"
+      )
+      .on("record", function (record) {
+        records.push(record);
+      })
+      .on("end", function () {
+        console.log("total in database : ");
+        console.log("total fetched : ");
+      })
+      .on("error", function (err) {
+        console.error(err);
+      })
+      .run({ autoFetch: true, maxFetch: 20 });
+  }
+);
+
+/**
+ * POST route template
+ */
+router.post(
+  "/",
+  (req: Request, res: Response, next: express.NextFunction): void => {
+    res.sendStatus(201);
+  }
+);
+
+module.exports = router;
 //get route for test data for gleaning items list
 router.get(
   "/gleaning/list",
