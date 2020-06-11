@@ -18,13 +18,13 @@ class GleaningList extends Component {
   }
 
   clickGleaningDetails = (event, id) => {
-    this.props.history.push(`/details/${id}`);
+    this.props.history.push(`/detail`);
   };
 
   render() {
     return (
-      <Container maxWidth={false}>
-        <Grid container spacing={2}>
+      <Container style={{ padding: 20 }} maxWidth={false}>
+        <Grid borderRadius="lg" container spacing={6}>
           {this.props.store.gleaningList.map((item, index) => (
             <Grid item xs={12} sm={4} md={3} lg={2}>
               <GleaningListItem item={item} />
