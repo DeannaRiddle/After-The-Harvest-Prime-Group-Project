@@ -97,6 +97,7 @@ class DetailPage extends React.Component {
     return (
       <div className="margin">
         <ReactToPrint
+          documentTitle="Gleaning_Report"
           trigger={() => {
             // NOTE: could just as easily return <SomeComponent />. Do NOT pass an `onClick` prop
             // to the root node of the returned component as it will be overwritten.
