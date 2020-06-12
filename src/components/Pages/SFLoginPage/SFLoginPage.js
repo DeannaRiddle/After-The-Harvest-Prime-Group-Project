@@ -29,8 +29,16 @@ const useStyles = makeStyles({
   },
 });
 
+// function clickGleaningDetails(props) {
+//   if(
+//   props.dispatch({ type: "FETCH_SALESFORCE_USER" }))
+//  return function (props.history.push(`/detail`));
+// }
+
+// onClick={() => props.clickGleaningDetails}>
 function SFLoginPage(props) {
   const classes = useStyles();
+
   //function to login with salesforce user id
 
   return (
