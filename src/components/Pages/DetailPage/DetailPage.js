@@ -2,7 +2,7 @@ import React from "react";
 import ReactToPrint from "react-to-print";
 import "./DetailPage.css";
 import { Button, withStyles, createStyles } from "@material-ui/core";
-import googleDocsBtn from "../../GoogleDocs/GoogleDocs.gs";
+import GoogleDocsBtn from "../../GoogleDocs/GoogleDocsBtn";
 
 const customStyles = (theme) =>
   createStyles({
@@ -96,34 +96,24 @@ class DetailPage extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <div className="margin">
-        <googleDocsBtn />
-        <ReactToPrint
-          documentTitle="Gleaning_Report"
-          trigger={() => {
-            // NOTE: could just as easily return <SomeComponent />. Do NOT pass an `onClick` prop
-            // to the root node of the returned component as it will be overwritten.
-            return (
-              <Button className={classes.printButton} href="#">
-                Print Document
-              </Button>
-            );
-          }}
-          content={() => this.componentRef}
-        />
-        <ComponentToPrint ref={(el) => (this.componentRef = el)} />
-
-        {/* <script
-          src="https://apis.google.com/js/platform.js"
-          async
-          defer
-        ></script>
-        <div
-          class="g-savetodrive"
-          data-src="//example.com/path/to/myfile.pdf"
-          data-filename="My Statement.pdf"
-          data-sitename="My Company Name"
-        ></div> */}
+      <div>
+        <GoogleDocsBtn />
+        <div className="margin">
+          <ReactToPrint
+            documentTitle="Gleaning_Report"
+            trigger={() => {
+              // NOTE: could just as easily return <SomeComponent />. Do NOT pass an `onClick` prop
+              // to the root node of the returned component as it will be overwritten.
+              return (
+                <Button className={classes.printButton} href="#">
+                  Print Document
+                </Button>
+              );
+            }}
+            content={() => this.componentRef}
+          />
+          <ComponentToPrint ref={(el) => (this.componentRef = el)} />
+        </div>
       </div>
     );
   }
