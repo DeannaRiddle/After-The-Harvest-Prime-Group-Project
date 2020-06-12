@@ -15,4 +15,8 @@ function* sfuserSaga() {
   yield takeLatest("FETCH_SALESFORCE_USER", fetchSalesforceUser);
 }
 
+function* sfLoginPush(props) {
+  yield props.dispatch({ type: "SET_GLEANING_LIST" });
+}
+
 export default sfuserSaga;
