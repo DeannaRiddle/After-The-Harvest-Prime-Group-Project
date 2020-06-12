@@ -1,7 +1,13 @@
 import React from "react";
 import ReactToPrint from "react-to-print";
 import "./DetailPage.css";
-import { Button, withStyles, createStyles } from "@material-ui/core";
+import {
+  Button,
+  withStyles,
+  createStyles,
+  Paper,
+  Container,
+} from "@material-ui/core";
 import GoogleDocsBtn from "../../GoogleDocs/GoogleDocsBtn";
 
 const customStyles = (theme) =>
@@ -16,12 +22,23 @@ const customStyles = (theme) =>
         background: "#f04d30",
       },
     },
+    googleDocsBtn: {
+      background: "#fcb83b",
+      color: "#fff",
+      position: "absolute",
+      right: "30px",
+      "&:hover": {
+        color: "#fff",
+        background: "#f04d30",
+      },
+    },
+    paper: { background: "#f2efea", maxWidth: "75%", paddingTop: "15px" },
   });
 
 const farmInfoData = [
   {
-    fieldSupervisor: "Mr. Frozen",
-    farm: "Incredible",
+    fieldSupervisor: "Mr. Green",
+    farm: "Wicked Tulips",
     address: "Kansas City, MO",
     contact: "1234567",
   },
@@ -29,16 +46,19 @@ const farmInfoData = [
 
 const gleaningInfoData = [
   {
-    managerNotes: "Mr. Frozen",
-    summary: "Incredible",
+    managerNotes: "half of team will be washing lettuce",
+    summary: "muddy in the fields, wear boots",
     produceIncoming: "Kansas City, MO",
     produceDistribution: "1234567",
-    volunteerRoster: "Helpful One",
+    volunteerRoster: "Pam Anderson",
   },
 ];
 
 class ComponentToPrint extends React.Component {
+  // state = { googleData:  };
   render() {
+    // const { classes } = this.props;
+
     return (
       <div>
         <div className="reportTitleContainer">
@@ -97,22 +117,26 @@ class DetailPage extends React.Component {
     const { classes } = this.props;
     return (
       <div>
-        <GoogleDocsBtn />
+        <GoogleDocsBtn className={classes.googleDocsBtn} />
         <div className="margin">
-          <ReactToPrint
-            documentTitle="Gleaning_Report"
-            trigger={() => {
-              // NOTE: could just as easily return <SomeComponent />. Do NOT pass an `onClick` prop
-              // to the root node of the returned component as it will be overwritten.
-              return (
-                <Button className={classes.printButton} href="#">
-                  Print Document
-                </Button>
-              );
-            }}
-            content={() => this.componentRef}
-          />
-          <ComponentToPrint ref={(el) => (this.componentRef = el)} />
+          <Paper variant="elevation" elevation={3} className={classes.paper}>
+            <Container maxWidth="false">
+              <ReactToPrint
+                documentTitle="Gleaning_Report"
+                trigger={() => {
+                  // NOTE: could just as easily return <SomeComponent />. Do NOT pass an `onClick` prop
+                  // to the root node of the returned component as it will be overwritten.
+                  return (
+                    <Button className={classes.printButton} href="#">
+                      Print Document
+                    </Button>
+                  );
+                }}
+                content={() => this.componentRef}
+              />
+              <ComponentToPrint ref={(el) => (this.componentRef = el)} />
+            </Container>
+          </Paper>
         </div>
       </div>
     );
