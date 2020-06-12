@@ -4,6 +4,7 @@ import sessionMiddleware from "./modules/session-middleware";
 import passport from "./strategies/user.strategy";
 import userRouter from "./routes/user.router";
 import salesforceRouter from "./routes/salesforce.router";
+const googleRouter = require("./routes/Google/google.router");
 
 require("dotenv").config();
 
@@ -23,6 +24,7 @@ app.use(passport.session());
 /* Routes */
 app.use("/api/user", userRouter);
 app.use("/api/salesforce", salesforceRouter);
+app.use("/api/google", googleRouter);
 
 // Serve static files
 app.use(express.static("build"));
