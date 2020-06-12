@@ -29,34 +29,34 @@ const useStyles = makeStyles({
   },
 });
 
+// function clickGleaningDetails(props) {
+//   if(
+//   props.dispatch({ type: "FETCH_SALESFORCE_USER" }))
+//  return function (props.history.push(`/detail`));
+// }
+
+// onClick={() => props.clickGleaningDetails}>
 function SFLoginPage(props) {
   const classes = useStyles();
-  // const clickGleaningList = (event, id) => {
-  //   this.props.history.push(`/gleaning`);
-  // const sfClickEvent = ( (){
-  //   if(document.addEventListener) { addEventListener = ... }
-  //    else { addEventListener = ... }
-  // })
-  // onClick={(event) => this.clickGleaningList(event)}
+
+  //function to login with salesforce user id
+
+  return (
+    <Box boxShadow={5} mx="auto" className={classes.box}>
+      <Card>
+        <CardActionArea
+          onClick={() => props.dispatch({ type: "FETCH_SALESFORCE_USER" })}
+        >
+          <CardMedia
+            className={classes.imgMedia}
+            image={(require, "./SFLoginPage/foodVegg.jpeg")}
+            title="Salesforce Login"
+          />
+          <CardContent>Click to Login with Salesforce</CardContent>
+        </CardActionArea>
+      </Card>
+    </Box>
+  );
 }
-
-//function to login with salesforce user id
-
-return (
-  <Box boxShadow={5} mx="auto" className={classes.box}>
-    <Card>
-      <CardActionArea
-        onClick={() => props.dispatch({ type: "FETCH_SALESFORCE_USER" })}
-      >
-        <CardMedia
-          className={classes.imgMedia}
-          image={(require, "./SFLoginPage/foodVegg.jpeg")}
-          title="Salesforce Login"
-        />
-        <CardContent>Click to Login with Salesforce</CardContent>
-      </CardActionArea>
-    </Card>
-  </Box>
-);
 
 export default connect(mapStoreToProps)(SFLoginPage);
