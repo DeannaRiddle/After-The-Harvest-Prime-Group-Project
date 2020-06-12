@@ -66,22 +66,24 @@ router.get(
 router.get(
   "/",
   (req: Request, res: Response, next: express.NextFunction): void => {
-    const records = [];
-    const query = conn
+    const records: string[] = [];
+    conn
       .query(
-        "SELECT GW_Volunteers__Description__c FROM GW_Volunteers__Volunteer_Shift__c"
+        "SELECT GW_Volunteers__Start_Date_Time__c, GW_Volunteers__System_Note__c FROM GW_Volunteers__Volunteer_Shift__c"
       )
       .on("record", function (record) {
+        console.log("------------------------\n");
+        console.log(record);
         records.push(record);
       })
       .on("end", function () {
-        console.log("total in database : ");
-        console.log("total fetched : ");
+        console.log("Description :");
       })
       .on("error", function (err) {
         console.error(err);
       })
       .run({ autoFetch: true, maxFetch: 20 });
+    res.send(records);
   }
 );
 
@@ -95,116 +97,87 @@ router.post(
   }
 );
 
-module.exports = router;
+// module.exports = router;
 //get route for test data for gleaning items list
 router.get(
   "/gleaning/list",
   (req: Request, res: Response, next: express.NextFunction): void => {
     const gleaningItem = [
       {
-        date: "6/8/2020",
-        field_supv: "Mack Donald",
-        farm: "Old MacDonald's Farm",
-        start_time: "10:00a.m.",
-        produce: "lettuce",
-      },
-      {
-        date: "6/8/2020",
-        field_supv: "Rene Wedow",
-        farm: "Hillside Meadows",
-        start_time: "10:00a.m.",
-        produce: "blueberries",
-      },
-      {
-        date: "6/9/2020",
-        field_supv: "Gladus Harvest",
-        farm: "Great Harvest",
-        start_time: "12:00p.m.",
-        produce: "carrots",
-      },
-      {
-        date: "6/9/2020",
-        field_supv: "Bob Buck",
-        farm: "New Point Farm",
-        start_time: "11:00a.m.",
-        produce: "grapes",
-      },
-      {
-        date: "6/10/2020",
-        field_supv: "Patrick Shellman",
-        farm: "Sunrise Farm",
-        start_time: "9:00a.m.",
-        produce: "peas",
-      },
-      {
-        date: "6/11/2020",
-        field_supv: "Mary Sunshine",
-        farm: "Sunshine Cherry Farm",
-        start_time: "9:00a.m.",
+        date: "6/2/2020",
+        field_supv: "Cathy Bylinowski",
+        farm: "18 Broadway",
+        start_time: "7:30a.m.",
         produce: "cherries",
       },
       {
-        date: "6/12/2020",
-        field_supv: "Joe Dirt",
-        farm: "Dirt Farm",
-        start_time: "11:00a.m.",
-        produce: "potatoes",
+        date: "6/4/2020",
+        field_supv: "Rick Mareske",
+        farm: "JCCC Open Petal Farm",
+        start_time: "7:30a.m.",
+        produce: "lettuce",
       },
       {
-        date: "6/12/2020",
-        field_supv: "Molly Bloom",
-        farm: "Sweet Valley",
-        start_time: "10:00a.m.",
-        produce: "onions",
+        date: "6/6/2020",
+        field_supv: "Joe Steineger",
+        farm: "Joe Steineger Farm",
+        start_time: "7:30a.m.",
+        produce: "radishes",
       },
       {
-        date: "6/13/2020",
-        field_supv: "Red John",
-        farm: "J&J Farm",
-        start_time: "10:00a.m.",
-        produce: "tomatoes",
+        date: "6/6/2020",
+        field_supv: "Joe Steineger",
+        farm: "Joe Steineger Farm",
+        start_time: "8:30a.m.",
+        produce: "greens",
       },
       {
-        date: "6/13/2020",
-        field_supv: "Runne Lothar",
-        farm: "Heritage Farm",
-        start_time: "11:00a.m.",
+        date: "6/9/2020",
+        field_supv: "Julie Davis",
+        farm: "WIC Community Garden",
+        start_time: "8:00a.m.",
         produce: "cabbage",
       },
       {
-        date: "6/13/2020",
-        field_supv: "Erik Foxx",
-        farm: "Magnolia Mill Farm",
-        start_time: "10:00a.m.",
-        produce: "green beans",
+        date: "6/11/2020",
+        field_supv: "Scott Thellman",
+        farm: "Juniper Hill Farms, LLC",
+        start_time: "7:30a.m.",
+        produce: "kale",
       },
       {
-        date: "6/14/2020",
-        field_supv: "Junior Samples",
-        farm: "Sample Lane Farm",
-        start_time: "10:00a.m.",
+        date: "6/11/2020",
+        field_supv: "Cary Rivard",
+        farm: "K-State Research and Extension Center",
+        start_time: "7:30a.m.",
+        produce: "lettuce",
+      },
+      {
+        date: "6/12/2020",
+        field_supv: "Cary Rivard",
+        farm: "K-State Research and Extension Center",
+        start_time: "7:30a.m.",
         produce: "lettuce",
       },
     ];
 
     res.send(gleaningItem);
-    // const conn = new jsforce.Connection({ oauth2: oauth2 });
-    // const code = req.query.code;
-    // conn.authorize(code, function (err, userInfo) {
-    //   if (err) {
-    //     return console.error("This error is in the auth callback: " + err);
-    //   }
-    //   console.log("Access Token: " + conn.accessToken);
-    //   console.log("Instance URL: " + conn.instanceUrl);
-    //   console.log("refreshToken: " + conn.refreshToken);
-    //   console.log("User ID: " + userInfo.id);
-    //   console.log("Org ID: " + userInfo.organizationId);
-    //   req.session.accessToken = conn.accessToken;
-    //   req.session.instanceUrl = conn.instanceUrl;
-    //   req.session.refreshToken = conn.refreshToken;
-    //   var string = encodeURIComponent("true");
-    // });
   }
 );
 
 export default router;
+// const conn = new jsforce.Connection({ oauth2: oauth2 });
+// const code = req.query.code;
+// conn.authorize(code, function (err, userInfo) {
+//   if (err) {
+//     return console.error("This error is in the auth callback: " + err);
+//   }
+//   console.log("Access Token: " + conn.accessToken);
+//   console.log("Instance URL: " + conn.instanceUrl);
+//   console.log("refreshToken: " + conn.refreshToken);
+//   console.log("User ID: " + userInfo.id);
+//   console.log("Org ID: " + userInfo.organizationId);
+//   req.session.accessToken = conn.accessToken;
+//   req.session.instanceUrl = conn.instanceUrl;
+//   req.session.refreshToken = conn.refreshToken;
+//   var string = encodeURIComponent("true");
