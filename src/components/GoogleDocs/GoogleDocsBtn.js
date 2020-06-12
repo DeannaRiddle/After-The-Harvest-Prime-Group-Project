@@ -1,25 +1,13 @@
 import React, { Component } from "react";
-import { Button, withStyles, createStyles } from "@material-ui/core";
-
-const customStyles = (theme) =>
-  createStyles({
-    googleDocsBtn: {
-      background: "#fcb83b",
-      color: "#fff",
-      position: "absolute",
-      right: "30px",
-      "&:hover": {
-        color: "#fff",
-        background: "#f04d30",
-      },
-    },
-  });
+import { Button } from "@material-ui/core";
+//when Button has {classes.googleDocsBtn} styling the component is not working
 
 class GoogleDocsBtn extends Component {
   render() {
-    const { classes } = this.props;
     return (
-      <Button className={classes.googleDocsBtn}>Export to Google Docs</Button>
+      <Button onClick={() => console.log("I clicked this")}>
+        Export to Google Docs
+      </Button>
     );
   }
 }
