@@ -9,13 +9,13 @@ function App(props) {
   const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
 
   const login = (response) => {
-    setLoggedIn(true);
-    props.dispatch({ type: "SET_TO_LOGGEDIN" });
+    //setLoggedIn(true);
+    // props.dispatch({ type: "SET_TO_LOGGEDIN" });
     props.dispatch({ type: "SET_USER_GOOGLE_INFO", payload: response });
   };
 
   const logout = (response) => {
-    setLoggedIn(false);
+    //setLoggedIn(false);
     props.dispatch({ type: "SET_TO_LOGGEDOUT" });
     props.dispatch({ type: "RESET_USER_GOOGLE_INFO" });
   };

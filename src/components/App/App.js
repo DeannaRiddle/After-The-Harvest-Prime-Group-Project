@@ -11,7 +11,7 @@ import { connect } from "react-redux";
 import Nav from "../Nav/Nav";
 // import Footer from "../Footer/Footer";
 import "../Fonts/Fonts.css";
-// import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 // import AboutPage from "../AboutPage/AboutPage";
 // import UserPage from "../UserPage/UserPage";
@@ -41,7 +41,7 @@ class App extends Component {
             {/* Visiting localhost:3000/about will show the about page.
             This is a route anyone can see, no login necessary */}
             {/* <Route exact path="/about" component={AboutPage} /> */}
-            <Route exact path="/home" component={LandingPage} />
+            {/*<Route exact path="/home" component={LandingPage} />*/}
             <Route exact path="/detail" component={DetailPage} />
             <Route exact path="/sflogin" component={SFLoginPage} />
             <Route exact path="/gleaning" component={GleaningListPage} />
@@ -55,20 +55,13 @@ class App extends Component {
             {/* <ProtectedRoute exact path="/info" component={InfoPage} /> */}
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will be redirected to the authRedirect path provided. */}
-            {/* <ProtectedRoute
-              exact
-              path="/login"
-              //     authRedirect="/admin"
-              component={LoginPage}
-            />
             <ProtectedRoute
               exact
-              path="/registration"
-              authRedirect="/admin"
-              component={RegisterPage}
-            /> */}
-
-            {/* If none of the other routes matched, we will show a 404. */}
+              path="/home"
+              authRedirect="/sflogin"
+              component={LandingPage}
+            />
+            }{/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>
           {/* <Footer /> */}
