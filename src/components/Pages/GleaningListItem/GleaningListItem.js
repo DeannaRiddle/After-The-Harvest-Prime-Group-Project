@@ -49,6 +49,7 @@ class GleaningListItem extends Component {
         <Button
           className={classes.printButton}
           onClick={(event) => this.clickGleaningDetails(event)}
+          fullWidth
         >
           Create Gleaning Report
         </Button>
