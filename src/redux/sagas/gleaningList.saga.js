@@ -14,8 +14,20 @@ function* getGleaningListItem(action) {
   }
 }
 
+function* addGoogleDocsLink(action) {
+  try {
+    yield put({
+      type: "ADD_DOCS_LINK",
+      payload: action.payload,
+    });
+  } catch (error) {
+    console.log("Adding google docs link failed", error);
+  }
+}
+
 function* gleaningListSaga() {
   yield takeLatest("GET_ALL_GLEANING", getGleaningListItem);
+  yield takeLatest("CREATE_DOC_LINK", addGoogleDocsLink);
 }
 
 export default gleaningListSaga;
