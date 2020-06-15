@@ -20,8 +20,6 @@ const conn = new jsforce.Connection({
 //   redirectUri: "http://localhost:3000/#/sflogin",
 // });
 //get route for salesforce user login
-console.log("Username?", process.env.SALESFORCE_USERNAME);
-console.log("PASSWORD?", process.env.SALESFORCE_PASSWORD);
 router.get(
   "/auth/login",
   (req: Request, res: Response, next: express.NextFunction): void => {
@@ -39,11 +37,11 @@ router.get(
 
       // Now you can get the access token and instance URL information.
       // Save them to establish connection next time.
-      console.log(conn.accessToken);
-      console.log(conn.instanceUrl);
-      // logged in user property
-      console.log("User ID: " + userInfo.id);
-      console.log("Org ID: " + userInfo.organizationId);
+      // console.log(conn.accessToken);
+      // console.log(conn.instanceUrl);
+      // // logged in user property
+      // console.log("User ID: " + userInfo.id);
+      // console.log("Org ID: " + userInfo.organizationId);
       res.send({ userInfo });
       // ...
     });
@@ -63,30 +61,72 @@ router.get(
 /**
  * GET route template
  */
-router.get(
-  "/",
-  (req: Request, res: Response, next: express.NextFunction): void => {
-    const records: string[] = [];
-    conn
-      .query(
-        "SELECT GW_Volunteers__Start_Date_Time__c, GW_Volunteers__System_Note__c FROM GW_Volunteers__Volunteer_Shift__c"
-      )
-      .on("record", function (record) {
-        console.log("------------------------\n");
-        console.log(record);
-        records.push(record);
-      })
-      .on("end", function () {
-        console.log("Description :");
-      })
-      .on("error", function (err) {
-        console.error(err);
-      })
-      .run({ autoFetch: true, maxFetch: 20 });
-    res.send(records);
-  }
-);
+// router.get(
+//   "/",
+//   (req: Request, res: Response, next: express.NextFunction): void => {
+//     const today = moment();
+//     const from_date = today.startOf("week");
+//     const to_date = today.endOf("week");
+//     const records: string[] = [];
+//     conn
+//       .query(
+//         `SELECT GW_Volunteers__Start_Date_Time__c, GW_Volunteers__Volunteer_Job__c FROM GW_Volunteers__Volunteer_Shift__c
+//         WHERE GW_Volunteers__Start_Date_Time__c >= ${from_date} AND GW_Volunteers__Start_Date_Time__c <= ${to_date}`
+//       )
+//       .on("record", function (record) {
+//         console.log("----------- SHIFT -------------\n");
+//         console.log(record);
+//         records.push(record);
+//       })
+//       .on("end", function () {
+//         conn
+//           .query(`SELECT Name FROM GW_Volunteers__Volunteer_Job__c`)
+//           .on("record", function (record) {
+//             console.log("---------- JOB --------------\n");
+//             console.log(record);
+//             records.push(record);
+//           })
+//           .on("end", function () {
+//             console.log("END");
+//           })
+//           .on("error", function (err) {
+//             console.error(err);
+//           })
+//           .run({ autoFetch: true, maxFetch: 5 });
+//         console.log("records", records);
+//         console.log("END SHIFT");
+//       })
+//       .on("error", function (err) {
+//         console.error(err);
+//       })
+//       .run({ autoFetch: true, maxFetch: 5 });
+//     res.send(records);
+//   }
+// );
 
+// router.get(
+//   "/volunteer_job",
+//   (req: Request, res: Response, next: express.NextFunction): void => {
+//     const records: string[] = [];
+//     conn
+//       .sobject("Job")
+//       .select("*, GW_Volunteers__Volunteer_Job__c.*", function (err, response) {
+//         console.log("job:", response);
+//      }); // asterisk means all fields in specified level are targeted.
+// .where("CreatedDate = TODAY") // conditions in raw SOQL where clause.
+// .limit(10)
+// .offset(20) // synonym of "skip"
+// .execute(function(err, records) {
+//   for (var i=0; i<records.length; i++) {
+//     var record = records[i];
+//     console.log("First Name: " + record.FirstName);
+//     console.log("Last Name: " + record.LastName);
+//     // fields in Account relationship are fetched
+//     console.log("Account Name: " + record.Account.Name);
+//     res.send(records);
+//   }
+//   }
+// );
 /**
  * POST route template
  */
@@ -166,18 +206,3 @@ router.get(
 );
 
 export default router;
-// const conn = new jsforce.Connection({ oauth2: oauth2 });
-// const code = req.query.code;
-// conn.authorize(code, function (err, userInfo) {
-//   if (err) {
-//     return console.error("This error is in the auth callback: " + err);
-//   }
-//   console.log("Access Token: " + conn.accessToken);
-//   console.log("Instance URL: " + conn.instanceUrl);
-//   console.log("refreshToken: " + conn.refreshToken);
-//   console.log("User ID: " + userInfo.id);
-//   console.log("Org ID: " + userInfo.organizationId);
-//   req.session.accessToken = conn.accessToken;
-//   req.session.instanceUrl = conn.instanceUrl;
-//   req.session.refreshToken = conn.refreshToken;
-//   var string = encodeURIComponent("true");
