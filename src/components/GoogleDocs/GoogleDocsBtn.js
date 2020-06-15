@@ -22,7 +22,9 @@ class GoogleDocsBtn extends Component {
 
   render() {
     return (
-      <Button onClick={this.createGoogleDoc}>Export to Google Docs</Button>
+      <Button {...this.props} onClick={this.createGoogleDoc}>
+        Export to Google Docs
+      </Button>
     );
   }
 }

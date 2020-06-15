@@ -25,14 +25,21 @@ const customStyles = (theme) =>
     googleDocsBtn: {
       background: "#fcb83b",
       color: "#fff",
-      position: "absolute",
-      right: "30px",
       "&:hover": {
         color: "#fff",
         background: "#f04d30",
       },
     },
-    paper: { background: "#f2efea", maxWidth: "80%", paddingTop: "15px" },
+    buttonContainer: {
+      textAlign: "center",
+    },
+    paper: {
+      background: "#f2efea",
+      maxWidth: "80%",
+      paddingTop: "15px",
+      paddingBottom: "15px",
+      margin: "35px auto 50px",
+    },
   });
 
 const farmInfoData = [
@@ -133,28 +140,31 @@ class DetailPage extends React.Component {
     const { classes } = this.props;
     return (
       <div>
-        <GoogleDocsBtn className={classes.googleDocsBtn} />
-        <div className="margin">
-          <Paper variant="elevation" elevation={3} className={classes.paper}>
-            <Container maxWidth="false">
-              <ReactToPrint
-                documentTitle="Gleaning_Report"
-                trigger={() => {
-                  // NOTE: could just as easily return <SomeComponent />. Do NOT pass an `onClick` prop
-                  // to the root node of the returned component as it will be overwritten.
-                  return (
-                    // <Button className={classes.printButton} href="#">
-                    //   Print Document
-                    // </Button>
-                    <div></div>
-                  );
-                }}
-                content={() => this.componentRef}
-              />
-              <ComponentToPrint ref={(el) => (this.componentRef = el)} />
-            </Container>
-          </Paper>
-        </div>
+        <Paper variant="elevation" elevation={3} className={classes.paper}>
+          <Container maxWidth="false" className={classes.buttonContainer}>
+            <GoogleDocsBtn className={classes.googleDocsBtn} />
+          </Container>
+        </Paper>
+
+        <Paper variant="elevation" elevation={3} className={classes.paper}>
+          <Container maxWidth="false">
+            <ReactToPrint
+              documentTitle="Gleaning_Report"
+              trigger={() => {
+                // NOTE: could just as easily return <SomeComponent />. Do NOT pass an `onClick` prop
+                // to the root node of the returned component as it will be overwritten.
+                return (
+                  // <Button className={classes.printButton} href="#">
+                  //   Print Document
+                  // </Button>
+                  <div></div>
+                );
+              }}
+              content={() => this.componentRef}
+            />
+            <ComponentToPrint ref={(el) => (this.componentRef = el)} />
+          </Container>
+        </Paper>
       </div>
     );
   }
