@@ -9,6 +9,7 @@ const mapStoreToProps = (reduxState) => {
     loginMode: reduxState.loginMode,
     errors: reduxState.errors,
     gleaningItem: reduxState.gleaningItem,
+    googleUser: reduxState.googleUser,
   };
 };
 
