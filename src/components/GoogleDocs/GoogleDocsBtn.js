@@ -8,19 +8,14 @@ import mapStoreToProps from "../../redux/mapStoreToProps";
 
 class GoogleDocsBtn extends Component {
   createGoogleDoc = () => {
-    console.log("create doc");
-    // console.log(this.props.store.googleUserReducer);
-    // const {client_secret, client_id, redirect_uris} = credentials.installed;
-    // const oAuth2Client = new
-    // const client_id = this.props.store.googleUserReducer.googleId;
-    // const client_id = this.props.store.googleUserReducer.googleId;
-    // const accessToken = this.props.store.googleUserReducer.accessToken;
-    // const client_secret = this.props.store.googleUserReducer
-    //this will send googleInfo needed to access user's google Docs to the server to make that POST request
+    // this.props.dispatch({
+    //   type: "CREATE_GOOGLE_DOCS",
+    // });
     this.props.dispatch({
-      type: "CREATE_GOOGLE_DOCS",
+      type: "CREATE_DOC_LINK",
+      payload:
+        "https://docs.google.com/document/d/13oJdNR__GQ74s3fAOTYAuFenyhl0TYknhb6IGIgI-94/edit?usp=sharing",
     });
-    // console.log(client_id);
   };
 
   render() {
