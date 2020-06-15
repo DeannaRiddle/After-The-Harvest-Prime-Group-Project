@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button } from "@material-ui/core";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 // import { google } from "googleapis";
 
@@ -16,6 +17,7 @@ class GoogleDocsBtn extends Component {
       payload:
         "https://docs.google.com/document/d/13oJdNR__GQ74s3fAOTYAuFenyhl0TYknhb6IGIgI-94/edit?usp=sharing",
     });
+    this.props.history.push("/gleaning");
   };
 
   render() {
@@ -25,4 +27,4 @@ class GoogleDocsBtn extends Component {
   }
 }
 
-export default connect(mapStoreToProps)(GoogleDocsBtn);
+export default withRouter(connect(mapStoreToProps)(GoogleDocsBtn));

@@ -11,8 +11,8 @@ function App(props) {
   const login = (response) => {
     const userGoogleInfo = response;
     console.log(response.googleId);
-    setLoggedIn(true);
-    props.dispatch({ type: "SET_TO_LOGGEDIN" });
+    // setLoggedIn(true);
+    // props.dispatch({ type: "SET_TO_LOGGEDIN" });
     props.dispatch({ type: "SET_USER_GOOGLE_INFO", payload: userGoogleInfo });
   };
 
@@ -44,7 +44,7 @@ function App(props) {
           clientId={CLIENT_ID}
           buttonText="Login to Gleaning Report"
           onSuccess={login}
-          scope="profile email https://www.googleapis.com/auth/documents"
+          // scope="profile email https://www.googleapis.com/auth/documents"
           onFailure={handleLoginFailure}
           cookiePolicy={"single_host_origin"}
         />

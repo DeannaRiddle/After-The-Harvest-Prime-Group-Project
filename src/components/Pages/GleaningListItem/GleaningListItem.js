@@ -27,6 +27,15 @@ const customStyles = (theme) =>
         background: "#fcb83b",
       },
     },
+    googleDocBtn: {
+      background: "#B2B335",
+
+      color: "#fff",
+      "&:hover": {
+        color: "#fff",
+        background: "#fcb83b",
+      },
+    },
     orange: {
       maxWidth: 345,
       background: "#fcb83b",
@@ -42,18 +51,26 @@ class GleaningListItem extends Component {
   clickGleaningDetails = (event, id) => {
     this.props.history.push(`/detail`);
   };
+
   render() {
     const { item, classes } = this.props;
 
     return (
       <Card className={classes.orange}>
-        <Button
-          className={classes.printButton}
-          onClick={(event) => this.clickGleaningDetails(event)}
-          fullWidth
-        >
-          Create Gleaning Report
-        </Button>
+        {item.link != null ? (
+          <Button className={classes.googleDocBtn} href={item.link} fullWidth>
+            Go to Google Docs
+          </Button>
+        ) : (
+          <Button
+            className={classes.printButton}
+            onClick={(event) => this.clickGleaningDetails(event)}
+            fullWidth
+          >
+            Create Gleaning Report
+          </Button>
+        )}
+
         <CardHeader title={item.farm} subheader={item.date} />
         <CardContent className={classes.stuff}>
           <Typography variant="body2" color="textSecondary" component="p">
