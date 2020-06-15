@@ -13,13 +13,13 @@ import GoogleDocsBtn from "../../GoogleDocs/GoogleDocsBtn";
 const customStyles = (theme) =>
   createStyles({
     printButton: {
-      background: "#fcb83b",
+      background: "#f04d30",
       color: "#fff",
       position: "absolute",
       right: "30px",
       "&:hover": {
         color: "#fff",
-        background: "#f04d30",
+        background: "#fcb83b",
       },
     },
     googleDocsBtn: {
