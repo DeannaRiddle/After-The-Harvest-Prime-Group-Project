@@ -4,48 +4,73 @@ import mapStoreToProps from "../../../redux/mapStoreToProps";
 
 //material-ui components
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  Card,
-  CardContent,
-  CardMedia,
-  CardActionArea,
-  Box,
-} from "@material-ui/core";
+import { Card, CardContent, CardMedia, Box, Button } from "@material-ui/core";
 
 const useStyles = makeStyles({
+  root: {
+    display: "flex",
+    height: 200,
+  },
+  details: {
+    display: "flex",
+    alignItems: "center",
+  },
   box: {
-    width: 600,
+    width: 480,
     marginTop: 80,
   },
-  card: {
-    width: 600,
-    textAlign: "center",
+  content: {
+    flex: "1 0 auto",
+    alignItems: "center",
   },
   media: {
-    height: 140,
+    width: 200,
+    backgroundSize: "120%",
+    backgroundPosition: "center center",
   },
   button: {
-    paddingTop: 10,
+    display: "flex",
+    boxShadow:
+      "rgba(0, 0, 0, 0.24) 0px 2px 2px 0px, rgba(0, 0, 0, 0.24) 0px 0px 1px 0px",
+  },
+
+  image: {
+    display: "flex",
   },
 });
 
 function SFLoginPage(props) {
   const classes = useStyles();
+
   //function to login with salesforce user id
 
   return (
     <Box boxShadow={5} mx="auto" className={classes.box}>
-      <Card>
-        <CardActionArea
-          onClick={() => props.dispatch({ type: "FETCH_SALESFORCE_USER" })}
-        >
+      <Card className={classes.root}>
+        <div className={classes.image}>
           <CardMedia
-            className={classes.imgMedia}
-            image={(require, "./SFLoginPage/foodVegg.jpeg")}
+            className={classes.media}
+            image={require("./salesforce.jpg")}
             title="Salesforce Login"
           />
-          <CardContent>Click to Login with Salesforce</CardContent>
-        </CardActionArea>
+        </div>
+        <div className={classes.details}>
+          <CardContent className={classes.content}>
+            <Button
+              // variant="outlined"
+              color="primary"
+              size="large"
+              className={classes.button}
+              onClick={() => {
+                props.dispatch({ type: "FETCH_SALESFORCE_USER" });
+                console.log(props.history);
+                props.history.push("/gleaning");
+              }}
+            >
+              Login with Salesforce
+            </Button>
+          </CardContent>
+        </div>
       </Card>
     </Box>
   );

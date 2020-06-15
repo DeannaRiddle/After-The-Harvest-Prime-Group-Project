@@ -19,11 +19,12 @@ import {
 const customStyles = (theme) =>
   createStyles({
     printButton: {
-      background: "#fcb83b",
+      background: "#f04d30",
+
       color: "#fff",
       "&:hover": {
         color: "#fff",
-        background: "#f04d30",
+        background: "#fcb83b",
       },
     },
     orange: {
@@ -49,6 +50,7 @@ class GleaningListItem extends Component {
         <Button
           className={classes.printButton}
           onClick={(event) => this.clickGleaningDetails(event)}
+          fullWidth
         >
           Create Gleaning Report
         </Button>

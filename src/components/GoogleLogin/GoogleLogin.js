@@ -17,7 +17,7 @@ function App(props) {
   };
 
   const logout = (response) => {
-    setLoggedIn(false);
+    //setLoggedIn(false);
     props.dispatch({ type: "SET_TO_LOGGEDOUT" });
     props.dispatch({ type: "RESET_USER_GOOGLE_INFO" });
   };
