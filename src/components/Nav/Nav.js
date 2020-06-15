@@ -31,20 +31,18 @@ const Nav = (props) => {
 
   let loginLinkData = {
     path: "/",
-    text: "Login / Register",
   };
 
-  if (props.store.user.id != null) {
-    loginLinkData.path = "/admin";
-    loginLinkData.text = "Home";
-  }
+  // if (props.store.user.id != null) {
+  //   loginLinkData.path = "/";
+  // }
 
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.appBar}>
         <Toolbar>
           <div></div>
-          <Link to="/home" className={classes.linkText}>
+          <Link to={loginLinkData.path} className={classes.linkText}>
             <Typography variant="h6" component="h1" className={classes.title}>
               Gleaning Report
             </Typography>
