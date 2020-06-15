@@ -25,22 +25,30 @@ const customStyles = (theme) =>
     googleDocsBtn: {
       background: "#fcb83b",
       color: "#fff",
-      position: "absolute",
-      right: "30px",
       "&:hover": {
         color: "#fff",
         background: "#f04d30",
       },
     },
-    paper: { background: "#f2efea", maxWidth: "75%", paddingTop: "15px" },
+    buttonContainer: {
+      textAlign: "center",
+    },
+    paper: {
+      background: "#f2efea",
+      maxWidth: "80%",
+      paddingTop: "15px",
+      paddingBottom: "15px",
+      margin: "35px auto 50px",
+    },
   });
 
 const farmInfoData = [
   {
-    fieldSupervisor: "Mr. Green",
-    farm: "Wicked Tulips",
-    address: "Kansas City, MO",
-    contact: "1234567",
+    fieldSupervisor: "Cary Rivard",
+    farm: "K-State Research and Extension Center",
+    address: "35230 W. 135th Street, Olathe, KS 66061",
+    contact: "Cary Rivard 785-320-3033 mobile",
+    startTime: "8:00 am",
   },
 ];
 
@@ -49,8 +57,22 @@ const gleaningInfoData = [
     managerNotes: "half of team will be washing lettuce",
     summary: "muddy in the fields, wear boots",
     produceIncoming: "Kansas City, MO",
-    produceDistribution: "1234567",
-    volunteerRoster: "Pam Anderson",
+    produceDistribution: `Catholic Charities of Olathe
+    333 E. Poplar Street
+    Olathe, KS 66061
+    Dianna 913 782-4077
+
+    In As Much Ministry
+    2050 Plumbers Way
+    Liberty MO 64068
+    Bee Young 816 781-6357
+
+    Lee’s Summit Social Services
+    108 Southeast 4th Street
+    Lee’s Summit MO 64063
+    Friend 816 525-4357`,
+    volunteerRoster:
+      "https://aftertheharvestkc.formtitan.com/shift-input?fld3=a0a3m00000BtYOh&fld13=a0Y3m00000FSCFf#/",
   },
 ];
 
@@ -63,7 +85,8 @@ class ComponentToPrint extends React.Component {
       <div>
         <div className="reportTitleContainer">
           <p className="reportTitle">
-            Gleaning Report - Date - Farm name - Crop
+            Gleaning Report - 6/12/2020 - K-State Research and Extension Center
+            - lettuce
           </p>
         </div>
         {farmInfoData.map(({ fieldSupervisor, farm, address, contact }) => (
@@ -117,27 +140,31 @@ class DetailPage extends React.Component {
     const { classes } = this.props;
     return (
       <div>
-        <GoogleDocsBtn className={classes.googleDocsBtn} />
-        <div className="margin">
-          <Paper variant="elevation" elevation={3} className={classes.paper}>
-            <Container maxWidth="false">
-              <ReactToPrint
-                documentTitle="Gleaning_Report"
-                trigger={() => {
-                  // NOTE: could just as easily return <SomeComponent />. Do NOT pass an `onClick` prop
-                  // to the root node of the returned component as it will be overwritten.
-                  return (
-                    <Button className={classes.printButton} href="#">
-                      Print Document
-                    </Button>
-                  );
-                }}
-                content={() => this.componentRef}
-              />
-              <ComponentToPrint ref={(el) => (this.componentRef = el)} />
-            </Container>
-          </Paper>
-        </div>
+        <Paper variant="elevation" elevation={3} className={classes.paper}>
+          <Container maxWidth="false" className={classes.buttonContainer}>
+            <GoogleDocsBtn className={classes.googleDocsBtn} />
+          </Container>
+        </Paper>
+
+        <Paper variant="elevation" elevation={3} className={classes.paper}>
+          <Container maxWidth="false">
+            <ReactToPrint
+              documentTitle="Gleaning_Report"
+              trigger={() => {
+                // NOTE: could just as easily return <SomeComponent />. Do NOT pass an `onClick` prop
+                // to the root node of the returned component as it will be overwritten.
+                return (
+                  // <Button className={classes.printButton} href="#">
+                  //   Print Document
+                  // </Button>
+                  <div></div>
+                );
+              }}
+              content={() => this.componentRef}
+            />
+            <ComponentToPrint ref={(el) => (this.componentRef = el)} />
+          </Container>
+        </Paper>
       </div>
     );
   }

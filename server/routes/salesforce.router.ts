@@ -11,6 +11,73 @@ const conn = new jsforce.Connection({
   // loginUrl : 'https://test.salesforce.com'
 });
 
+const gleaningItem = [
+  {
+    date: "6/2/2020",
+    field_supv: "Cathy Bylinowski",
+    farm: "18 Broadway",
+    start_time: "7:30a.m.",
+    produce: "cherries",
+    link: null,
+  },
+  {
+    date: "6/4/2020",
+    field_supv: "Rick Mareske",
+    farm: "JCCC Open Petal Farm",
+    start_time: "7:30a.m.",
+    produce: "lettuce",
+    link: null,
+  },
+  {
+    date: "6/6/2020",
+    field_supv: "Joe Steineger",
+    farm: "Joe Steineger Farm",
+    start_time: "7:30a.m.",
+    produce: "radishes",
+    link: null,
+  },
+  {
+    date: "6/6/2020",
+    field_supv: "Joe Steineger",
+    farm: "Joe Steineger Farm",
+    start_time: "8:30a.m.",
+    produce: "greens",
+    link: null,
+  },
+  {
+    date: "6/9/2020",
+    field_supv: "Julie Davis",
+    farm: "WIC Community Garden",
+    start_time: "8:00a.m.",
+    produce: "cabbage",
+    link: null,
+  },
+  {
+    date: "6/11/2020",
+    field_supv: "Scott Thellman",
+    farm: "Juniper Hill Farms, LLC",
+    start_time: "7:30a.m.",
+    produce: "kale",
+    link: null,
+  },
+  {
+    date: "6/11/2020",
+    field_supv: "Cary Rivard",
+    farm: "K-State Research and Extension Center",
+    start_time: "7:30a.m.",
+    produce: "lettuce",
+    link: null,
+  },
+  {
+    date: "6/12/2020",
+    field_supv: "Cary Rivard",
+    farm: "K-State Research and Extension Center",
+    start_time: "7:30a.m.",
+    produce: "lettuce",
+    link: null,
+  },
+];
+
 // const oauth2 = new jsforce.OAuth2({
 //   // you can change loginUrl to connect to sandbox or prerelease env.
 //   //clientId and Secret will be provided when you create a new connected app in your SF developer account
@@ -142,66 +209,15 @@ router.post(
 router.get(
   "/gleaning/list",
   (req: Request, res: Response, next: express.NextFunction): void => {
-    const gleaningItem = [
-      {
-        date: "6/2/2020",
-        field_supv: "Cathy Bylinowski",
-        farm: "18 Broadway",
-        start_time: "7:30a.m.",
-        produce: "cherries",
-      },
-      {
-        date: "6/4/2020",
-        field_supv: "Rick Mareske",
-        farm: "JCCC Open Petal Farm",
-        start_time: "7:30a.m.",
-        produce: "lettuce",
-      },
-      {
-        date: "6/6/2020",
-        field_supv: "Joe Steineger",
-        farm: "Joe Steineger Farm",
-        start_time: "7:30a.m.",
-        produce: "radishes",
-      },
-      {
-        date: "6/6/2020",
-        field_supv: "Joe Steineger",
-        farm: "Joe Steineger Farm",
-        start_time: "8:30a.m.",
-        produce: "greens",
-      },
-      {
-        date: "6/9/2020",
-        field_supv: "Julie Davis",
-        farm: "WIC Community Garden",
-        start_time: "8:00a.m.",
-        produce: "cabbage",
-      },
-      {
-        date: "6/11/2020",
-        field_supv: "Scott Thellman",
-        farm: "Juniper Hill Farms, LLC",
-        start_time: "7:30a.m.",
-        produce: "kale",
-      },
-      {
-        date: "6/11/2020",
-        field_supv: "Cary Rivard",
-        farm: "K-State Research and Extension Center",
-        start_time: "7:30a.m.",
-        produce: "lettuce",
-      },
-      {
-        date: "6/12/2020",
-        field_supv: "Cary Rivard",
-        farm: "K-State Research and Extension Center",
-        start_time: "7:30a.m.",
-        produce: "lettuce",
-      },
-    ];
-
     res.send(gleaningItem);
+  }
+);
+
+router.put(
+  "/docLink",
+  (req: Request, res: Response, next: express.NextFunction): void => {
+    gleaningItem[gleaningItem.length - 1].link = req.body.link;
+    res.sendStatus(201);
   }
 );
 

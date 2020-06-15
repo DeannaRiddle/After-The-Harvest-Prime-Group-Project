@@ -30,7 +30,7 @@ const Nav = (props) => {
   const classes = useStyles();
 
   let loginLinkData = {
-    path: "/home",
+    path: "/",
     text: "Login / Register",
   };
 

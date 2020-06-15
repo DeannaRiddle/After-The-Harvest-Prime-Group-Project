@@ -1,7 +1,5 @@
 .margin {
-  margin-top: 50px;
-  margin-left: 25%;
-  margin-bottom: 50px;
+  margin: 35px auto 50px;
 }
 
 .reportTitleContainer {

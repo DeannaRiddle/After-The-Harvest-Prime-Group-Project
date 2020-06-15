@@ -37,14 +37,10 @@ class App extends Component {
           <Nav />
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
-            <Redirect exact from="/" to="/home" />
             {/* Visiting localhost:3000/about will show the about page.
             This is a route anyone can see, no login necessary */}
             {/* <Route exact path="/about" component={AboutPage} /> */}
             {/*<Route exact path="/home" component={LandingPage} />*/}
-            <Route exact path="/detail" component={DetailPage} />
-            <Route exact path="/sflogin" component={SFLoginPage} />
-            <Route exact path="/gleaning" component={GleaningListPage} />
             {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the 'Login' or 'Register' page.
@@ -57,11 +53,18 @@ class App extends Component {
             they will be redirected to the authRedirect path provided. */}
             <ProtectedRoute
               exact
-              path="/home"
+              path="/"
               authRedirect="/sflogin"
               component={LandingPage}
             />
-            }{/* If none of the other routes matched, we will show a 404. */}
+            <ProtectedRoute exact path="/sflogin" component={SFLoginPage} />
+            <ProtectedRoute
+              exact
+              path="/gleaning"
+              component={GleaningListPage}
+            />
+            <ProtectedRoute exact path="/detail" component={DetailPage} />
+            {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>
           {/* <Footer /> */}
