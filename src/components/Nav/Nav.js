@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import { makeStyles } from "@material-ui/core/styles";
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
+import GoogleLogin from "react-google-login";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,7 +45,7 @@ const Nav = (props) => {
       <AppBar position="static" className={classes.appBar}>
         <Toolbar>
           <div></div>
-          <Link to="/home" className={classes.linkText}>
+          <Link to="/" className={classes.linkText}>
             <Typography variant="h6" component="h1" className={classes.title}>
               Gleaning Report
             </Typography>
