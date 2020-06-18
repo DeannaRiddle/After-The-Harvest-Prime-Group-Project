@@ -36,40 +36,41 @@ router.post(
   "/docs",
   (req: Request, res: Response, next: express.NextFunction): void => {
     // const { client_secret, client_id, redirect_uris } = credentials.installed;
-    // function authorize() {
-    //   const oAuth2Client = new google.auth.OAuth2(
-    //     client_id,
-    //     client_secret,
-    //     redirect_uris[0]
-    //   );
+    function authorize() {
+      const oAuth2Client = new google.auth.OAuth2(
+        client_id,
+        client_secret,
+        redirect_uris[0]
+      );
 
-    //   return oAuth2Client;
-    // }
-    // async function main(document_id) {
-    //   const auth = await authorize();
-    //   const docs = google.docs({ version: "v1", auth });
-    //   await docs.document.create({
-    //     title: "Gleaning_Report",
-    //   });
-    // }
-    // main();
+      return oAuth2Client;
+    }
+    async function main(document_id: any) {
+      const auth = await authorize();
+      const docs = google.docs({ version: "v1", auth });
+      await docs.document.create({
+        title: "Gleaning_Report",
+      });
+    }
+    main("Gleaning_Report");
+
     const content: {} = {
-      title: "Gleaning Report 3",
-      // body: {
-      //   content: [
-      //     {
-      //       paragraph: {
-      //         elements: [
-      //           {
-      //             textRun: {
-      //               content: "gleaning report is here",
-      //             },
-      //           },
-      //         ],
-      //       },
-      //     },
-      //   ],
-      // },
+      title: `Gleaning Report 2`,
+      body: {
+        content: [
+          {
+            paragraph: {
+              elements: [
+                {
+                  textRun: {
+                    content: "gleaning report is here",
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     };
 
     axios
